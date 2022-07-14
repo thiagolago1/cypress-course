@@ -5,7 +5,7 @@ import '../../support/CommandsContas'
 
 describe('Should test at a functional level', () => {
   before(() => {
-    cy.login('a@a', 'a')
+    cy.login(Cypress.env('user_email'), Cypress.env('user_pw'))
     cy.resetApp()
   })
 
@@ -68,7 +68,7 @@ describe('Should test at a functional level', () => {
     cy.xpath(locators.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain', '4.034,00')
   })
 
-  it('Should remove a transaction', () => {
+  it.only('Should remove a transaction', () => {
     cy.get(locators.MENU.EXTRATO).click();
     cy.xpath(locators.EXTRATO.FN_XP_REMOVER_ELEMENTO('Movimentacao para exclusao')).click()
     cy.get(locators.MESSAGE).should('contain', 'sucesso')
